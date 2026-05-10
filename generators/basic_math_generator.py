@@ -5,42 +5,32 @@ import random as rd
 from random import randint, choice 
 from operator import mul, sub, add, truediv
 
-MAX_MULTIPLICATION_NUMBER = 13
+MINIMUM_NUMER = 1
+
+MAX_MULTIPLICATION_NUMBER = 12
 
 class BasicMathGenerator:
 
     def __init__(self) -> None:
-
-        #generating random multiplication numbers
-        self.max_mul_num = MAX_MULTIPLICATION_NUMBER
-
-    def generate_riddle(self) -> None:
-        """Generating numbers and type of a operation."""
         pass
+
+    def choosed_riddle(self) -> tuple[str,int]:
+        """Choosing random riddle to return."""
+        choosed_riddle = choice([self.riddle_multiplication])
+        return choosed_riddle()
 
     def riddle_addition(self) -> None:
         pass
     def riddle_subtraction(self) -> None:
         pass
     
-    def riddle_multiplication(self) -> tuple[(int|int)] | t.Any:
+    def riddle_multiplication(self) -> tuple[str, int]:
 
-        self.mul_x = rd.randint(1,MAX_MULTIPLICATION_NUMBER)
-        self.mul_y = rd.randint(1,MAX_MULTIPLICATION_NUMBER)
-        print(f"Find the solution to the equation: {self.mul_x} * {self.mul_y}")
-        correct_answer = op.mul(self.mul_x,self.mul_y)
-        answer = input()
-        
-        if answer == correct_answer:
-            print("This is correct answer!")
-        elif answer != correct_answer:
-            print(f"The correct answer is {correct_answer}")
-        
-
+        mul_x = rd.randint(MINIMUM_NUMER,MAX_MULTIPLICATION_NUMBER)
+        mul_y = rd.randint(MINIMUM_NUMER,MAX_MULTIPLICATION_NUMBER)
+        riddle_question:str = f"{mul_x} * {mul_y}"
+        correct_answer:int = op.mul(mul_x, mul_y)
+        return riddle_question, correct_answer
+    
     def riddle_division(self) -> None:
         pass
-    
-    # def testing(self) -> t.Any:
-    #     pass
-        
-print(BasicMathGenerator().riddle_multiplication())

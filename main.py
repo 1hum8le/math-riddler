@@ -3,6 +3,7 @@ from generators.basic_math_generator import BasicMathGenerator
 import time
 import os
 import subprocess
+import sys
 
 class MathQuizGame:
 
@@ -12,7 +13,6 @@ class MathQuizGame:
         self.state = "START"
 
     def main(self) -> None:
-            
             while True:
                 if self.state == "START":
 
@@ -20,7 +20,7 @@ class MathQuizGame:
                     print("Extra Point if you Solve it in 3s!")
                     print("To Exit The Game at any point type -> [quit] <-.\n")
 
-                    print("Are you Ready?\n Type [start] to beginn!")
+                    print("Are you Ready?\n Type [start] to Begin!")
                     user_input = input()
 
                     if user_input == "quit":
@@ -31,7 +31,7 @@ class MathQuizGame:
 
                     elif user_input != "start":
                         print(f"Well -> {user_input} <- that's not [start]\n")
-                        time.sleep(1)
+                        time.sleep(3)
                         self.clear_console()
 
                     elif user_input == "start":
@@ -62,35 +62,36 @@ class MathQuizGame:
 
                         elif user_answer == "":
                             print(f"\n The answer was: {riddle} = {correct_answer}\n")
-                            time.sleep(2)
+                            time.sleep(3)
                             self.clear_console()
 
                         elif int(user_answer) == correct_answer:
                             print(f"{riddle} = {user_answer}!\n That's correct asnwer!")                                    
-                            if answer_time < 3:
-                                points +=2
+                            if answer_time <= 3:
+                                points +=3
                                 print(f"\nFlasHhhH! That's what we call SPEEEEEEED.\n Get 2 points for that!")
-                            elif answer_time < 5:
-                                points += 1
+                            elif answer_time <= 5:
+                                points += 2
                                 print(f"\nGrab a point for beeing quick.\n Your current points are: {points}.\n Keep it up!") 
-                            elif answer_time < 6:
+                            elif answer_time <= 7:
                                 print("\nCome on! You can do better then that!")
-                            elif answer_time < 10:
+                                points += 1
+                            elif answer_time <= 10:
                                 print("\nIs it a joke? We have a lot of work to do...")
-                            elif answer_time < 20:
+                            elif answer_time <= 15:
                                 print("\nHopefully coffee is done.\n Shall we continue?")
-                            time.sleep(2)
+                            time.sleep(3)
                             self.clear_console()
 
                         elif int(user_answer) != correct_answer:
                             print(f"\n {riddle} = {correct_answer} Incorrect! \n Prepare for next one!\n")
                             print(f"Your score at this point is {points} points.")
-                            time.sleep(2)
+                            time.sleep(3)
                             self.clear_console()
                         
                         if riddle_count == 20:
                             self.clear_console()
-                            print(f"You've got {points} / 40. Good Job!\n Keep it up!")
+                            print(f"You've got {points} / 60. Good Job!\n Keep it up!")
                             time.sleep(5)
                             self.clear_console()
                             self.state = "START"
@@ -100,12 +101,14 @@ class MathQuizGame:
                         print("Answer must be Number!")
                         if riddle_count > 0:
                             riddle_count -= 1
-                        time.sleep(1)
+                        time.sleep(3)
                         self.clear_console()
     
     def clear_console(self) -> None:
         command = 'cls' if os.name == 'nt' else 'clear'
         subprocess.run(command, shell=True)
 
+
 MathQuizGame().main()
+
 

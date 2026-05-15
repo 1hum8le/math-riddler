@@ -3,7 +3,8 @@ from generators.basic_math_generator import BasicMathGenerator
 import time
 import os
 import subprocess
-import sys
+
+SPEED_LEVEL = 1 # Extremly fast = 0.1 | Standard Speed = 3 | Too Slow = 10 - do not use "0". I have no idea, what's gonna happend.
 
 class MathQuizGame:
 
@@ -26,12 +27,12 @@ class MathQuizGame:
                     if user_input == "quit":
                         self.clear_console()
                         print("\nQuiting the Game...")
-                        time.sleep(1)
+                        time.sleep(SPEED_LEVEL)
                         break
 
                     elif user_input != "start":
                         print(f"Well -> {user_input} <- that's not [start]\n")
-                        time.sleep(3)
+                        time.sleep(SPEED_LEVEL)
                         self.clear_console()
 
                     elif user_input == "start":
@@ -56,13 +57,13 @@ class MathQuizGame:
 
                         if str(user_answer) == "quit":
                             print("Exiting to Main Menu...")
-                            time.sleep(1)
+                            time.sleep(SPEED_LEVEL)
                             self.clear_console()
                             self.state = "START"
 
                         elif user_answer == "":
                             print(f"\n The answer was: {riddle} = {correct_answer}\n")
-                            time.sleep(3)
+                            time.sleep(SPEED_LEVEL)
                             self.clear_console()
 
                         elif int(user_answer) == correct_answer:
@@ -80,19 +81,19 @@ class MathQuizGame:
                                 print("\nIs it a joke? We have a lot of work to do...")
                             elif answer_time <= 15:
                                 print("\nHopefully coffee is done.\n Shall we continue?")
-                            time.sleep(3)
+                            time.sleep(SPEED_LEVEL)
                             self.clear_console()
 
                         elif int(user_answer) != correct_answer:
                             print(f"\n {riddle} = {correct_answer} Incorrect! \n Prepare for next one!\n")
                             print(f"Your score at this point is {points} points.")
-                            time.sleep(3)
+                            time.sleep(SPEED_LEVEL)
                             self.clear_console()
                         
                         if riddle_count == 20:
                             self.clear_console()
                             print(f"You've got {points} / 60. Good Job!\n Keep it up!")
-                            time.sleep(5)
+                            time.sleep(SPEED_LEVEL + 2)
                             self.clear_console()
                             self.state = "START"
 
@@ -101,7 +102,7 @@ class MathQuizGame:
                         print("Answer must be Number!")
                         if riddle_count > 0:
                             riddle_count -= 1
-                        time.sleep(3)
+                        time.sleep(SPEED_LEVEL + 2)
                         self.clear_console()
     
     def clear_console(self) -> None:

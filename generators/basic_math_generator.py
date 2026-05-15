@@ -11,6 +11,7 @@ MAX_ADDITION_NUMER = 100
 MAX_MULTIPLICATION_NUMBER = 12
 MAX_SUBTRACTION_NUMBER = 100
 
+#difficulty, division until
 DIVISION_LEVEL = 4
 
 class BasicMathGenerator:
@@ -31,7 +32,7 @@ class BasicMathGenerator:
         return riddle_question, correct_answer
 
     def riddle_subtraction(self) -> tuple[str,int]:
-        sub_x:int = rd.randint(MINIMUM_NUMBER, MAX_SUBTRACTION_NUMBER) # 13 gówno kurwa jebane gówno dupa
+        sub_x:int = rd.randint(MINIMUM_NUMBER, MAX_SUBTRACTION_NUMBER) # 13 
         sub_y:int = rd.randint(MINIMUM_NUMBER, MAX_SUBTRACTION_NUMBER) # 63
 
         if sub_x <= sub_y:
